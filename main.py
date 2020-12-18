@@ -1,21 +1,22 @@
 import discord
 import os
+from word import one,respe
+import random
+
+myToken = os.getenv('TOKEN')
+
+class MyClient(discord.Client):
+    async def on_ready(self):
+        print('Logged on as', self.user)
+
+    async def on_message(self, message):
+        if message.author == self.user:
+            return
+
+        if message.content == f'{one[0]}':
+            await message.channel.send('%s:  %s' %(self.user, random.choice(respe)))
+
+    
 
 myToken = os.getenv('TOKEN')
 client = discord.Client()
-
-@client.event
-async def on_ready():
-  print(f'Nou konekte ak {client.user}')
-
-@client.event
-# msj = msg = message
-async def on_message(msj):
-  if msj.author == client.user:
-    return
-  
-  if msj.content.startswith('$hello'):
-    await  msj.channel.send('Byen vini!!!')
-
-
-client.run(myToken)
