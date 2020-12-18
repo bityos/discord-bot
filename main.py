@@ -18,5 +18,5 @@ class MyClient(discord.Client):
 
     
 
-myToken = os.getenv('TOKEN')
-client = discord.Client()
+client = MyClient()
+client.run(myToken)
